@@ -6,10 +6,17 @@ const app = express();
 
 // add an app.get with the route '/' so that something will be returned when the user goes to the home page
 app.get('/', function(req, res) {
-    const url = "https://api.openweathermap.org/data/2.5/weather?q=Davis&appid=4d7a6e6ac08edf9e8d2dcd2712895d90";
+
+    // break down the endpoint url into parts to allow certain parts of it to be changed (dynamic instead of static)
+
+    const city = "Davis";
+    const apiKey = "4d7a6e6ac08edf9e8d2dcd2712895d90";
+    const unit = "metric";
+    const url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&unit=" + unit;
+
+
     https.get(url, function(response) {
         console.log(response.statusCode);
-        console.log(response);
 
         // this function is used to basically unpack the JSON object that we got and putting it back into a readable JSON object using .parse
         response.on("data", function(data) {
