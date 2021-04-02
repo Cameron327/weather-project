@@ -27,6 +27,7 @@ app.post('/', function(req, res) {
         console.log(response.statusCode);
 
         // this function is used to basically unpack the JSON object that we got and putting it back into a readable JSON object using .parse
+        // This parse parses the data from the external server while the outer parse was used to parse the data from the user (i think?)
         response.on("data", function(data) {
             const weatherData = JSON.parse(data);
             console.log(weatherData);
